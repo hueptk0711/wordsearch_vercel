@@ -1,0 +1,80 @@
+body {
+    background: #F5EEFC;
+    position: relative;
+    font-family:  "Baloo Da 2", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.head {
+    left: 2%;
+    top: 2%;
+    position: fixed;
+    z-index: 1000;
+}
+.dropdown {
+    top: 0;
+    left: 0;
+    position: absolute;
+    left: 2%;
+    top: 30%;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #7B68EE;
+    color: white;
+    font-size: 16px;
+    border-radius: 2px;
+    border: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #a396eb;}   
+
+.about-us-title {
+    margin-top: 60px;
+    font-family: 'Baloo Da 2', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: #7b68ee;
+    line-height: 108%;
+    text-align: center;
+}
+
+.about-us-image {
+    width: 80%;
+    aspect-ratio: 2.13;
+    object-fit: cover;
+    border-radius: 15px;
+    position: relative;
+    left: 10%;
+}
+
+@media (max-width: 991px) {
+
+    .about-us-title {
+        font-size: 35px;
+    }
+
+    .about-us-image {
+        margin-top: 40px;
+    }
+}

@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static '/favicon.ico' %}">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Baloo Da 2:wght@400;500;700&display=swap"
+    />
+
+    <style>
+      body {
+            background-color: #F8F7FE;
+            font-family:  "Baloo Da 2", sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            width: 100%;
+      }
+
+      .head {
+          width: 100%;
+          height: 60px;
+          left: 0px;
+          top: 0px;
+          position: fixed;
+          background: #ffffff;
+          border-top: 1px rgb(179, 177, 177) solid;
+          z-index: 1000;
+      }
+
+      .logo {
+        width: 250px;
+        height: auto;
+        position: absolute;
+        top:8px;
+        left: 50%; 
+        transform: translateX(-50%);
+      }
+      .main-heading-1 {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        position: absolute;
+        top: 0;
+      }
+      .wrapper-main-heading-1 {
+        position: absolute;
+        top: 150px;
+        left: 7%;
+        width: 471px;
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+    
+      .main-svg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 900px;
+        overflow: hidden;
+        object-fit: cover;
+        flex-grow: 1; 
+        flex-shrink: 1;
+        z-index: 2;
+      }
+     
+      .main-strong {
+        width: 380px;
+        position: absolute;
+        top: 190px;
+        line-height: 40px;
+        font-weight: 400;
+        font-size: 25px;
+      }
+
+      .main-button {
+        position: absolute;
+        top: 350px;
+        width: 350px;
+        height: 70px;
+        background: linear-gradient(45deg, #45C4F9 0%, #7D09FF 50%, #FF0BE5 100%);
+        box-shadow: 0px 10px 25px rgba(123, 104, 238, 0.50);
+        border-radius: 10px;
+        text-align: center; 
+        color: white; 
+        font-size: 30px; 
+        font-weight: 700; 
+        line-height: 21px; 
+        word-wrap: break-word;
+        border: none;
+      }
+
+      .main-button:hover {
+        background: #b28fcc;
+      }
+      .word {
+        width: 100%;
+        height: 700px;
+        background-color: var(--color-white);
+        text-align: left;
+        font-family: var(--font-baloo-da-2);
+        position: relative;
+        overflow: hidden;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #24223e;
+      }
+
+      @media screen and (max-width: 1000px) {
+        .main-svg {
+          display: none;
+        }
+
+        .subbutton {
+          display: none;
+        }
+
+        .wrapper-main-heading-1{
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      .button-group {
+        position: absolute;
+        right: 4%;
+        top:10px;
+      }
+
+      .subbutton {
+        width: 80px;
+        height: 40px;
+        font-family:  "Baloo Da 2", sans-serif;
+        font-size: 16px;
+      }
+
+      #signup a {
+        text-decoration: none;
+        color: #ffffff;
+      }
+
+      #signup {
+        background: #BF8CE1;
+        border: none;
+        border-radius: 8px;
+      }
+
+      #login a {
+        text-decoration: none;
+        color: #292D34;
+      }
+
+      #login {
+        background: #CCCFD6;
+        border: none;
+        border-radius: 8px;
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="head">
+      <div style="width: 100%; height: 60px; left: 0px; top: 0px; position: absolute; background: #ffffff00; box-shadow: 0px 10px 25px rgba(184, 53, 210, 0.1)"></div>
+      <img class="logo" src="{% static '/logoWS.jpg' %}" alt="logo">
+      <div class="button-group" role="group" aria-label="Basic example">
+        <button type="button" class="subbutton" id="signup"><a href="register">Register</a></button>
+        <button type="button" class="subbutton" id="login"><a href="login">Log in</a></button>
+      </div>
+    </div>
+
+    <div class="word">
+      <div class="wrapper-main-heading-1">
+        <img
+          class="main-heading-1"
+          loading="lazy"
+          alt=""
+          src="{% static './ai_power_word_search.png' %}"
+        />
+
+        <h2 class="main-strong">
+          Enhance your teaching experience with AI-powered Word Search tool
+        </h2>
+        <button type="button" class="main-button" onclick="window.location.href='login';">Get Started. It's FREE</button>
+      
+      </div>
+
+      <img class="main-svg" alt="" src="{% static './3d_image.png' %}" />
+        
+    </div>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static '/favicon.ico' %}">
+    <!-- add version=1 to resolve cache issue -->
+    <link rel="stylesheet" type='text/css' href="{%static '/wordsearch.css' %}?version=1"> 
+</head>
+<body>
+  <div class="header">
+    <div class="left-button-group" role="group" aria-label="Basic example">
+      <button type="button" class="subButton"><a href="home">Home</a></button>
+      <button type="button" class="subButton"><a href="guide">Introduction</a></button>
+    </div>
+    <img class="logo" src="{% static '/logoWS.jpg' %}" alt="logo">
+    <div class="right-button-group" role="group" aria-label="Basic example">
+      <button type="button" class="subButton"><a href="about_us">About us</a></button>
+      <button type="button" class="subButton"><a href="logout">Log out</a></button>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">&#9776;</button>
+      <div class="dropdown-content">
+        <a href="home">Home</a>
+        <a href="guide">Introduction</a>
+        <a href="about_us">About us</a>
+      </div>
+    </div>
+  </div>
+  <div class="head-of-main">
+    <h1 class="page-title">AI-Powered Word Search Game</h1>
+    <p class="page-description">
+        This interactive game integrates AI technology to create engaging word search puzzles tailored to your lesson plans, improving vocabulary in a fun way.
+    </p>
+  </div>
+  <div class="wrapper">
+    <div class="box">
+      <form method='POST' action="generate">
+        {% csrf_token %}
+        <h2 class="form-title">What lesson is this for ?</h2>
+        <div class="input">
+          <div class="input-subject">
+            <label>Subject<br>
+              <input name='course' type="text" placeholder=" e.g. Math" required>
+            </label>
+          </div>
+
+          <div class="input-lesson">
+            <label>Lesson name<br>
+              <input name='lesson' type="text" placeholder=" e.g. Pytago" required>
+            </label>
+          </div>
+
+          <div class="input-grade">
+            <label>Grade level<br>
+              <input name='grade' type="text" placeholder=" e.g. Grade 9" required>
+            </label>
+          </div>
+          <!-- shapes: Circle, Club, Dimiond, Donut, Fish, Flower, Heart, Hexagon, Octagon, Pentagon, Spade, Star5, Star6 -->
+          <!-- Star8, Tree, Triangle -->
+          <div class="input-shapes">
+            <label>Shapes</label><br>
+            <select name="shape" id="dropdownMenuCreate" class="dropdownMenuCreate">
+              <option value="square" class="shapes">Square</option>
+              <option value="circle" class="shapes">Circle</option>
+              <option value="club" class="shapes">Club</option>
+              <option value="diamond" class="shapes">Dimiond</option>
+              <option value="donut" class="shapes">Donut</option>
+              <option value="fish" class="shapes">Fish</option>
+              <option value="flower" class="shapes">Flower</option>
+              <option value="heart" class="shapes">Heart</option>
+              <option value="hexagon" class="shapes">Hexagon</option>
+              <option value="octagon" class="shapes">Octagon</option>
+              <option value="pentagon" class="shapes">Pentagon</option>
+              <option value="star5" class="shapes">Star with 5 edges</option>
+              <option value="star6" class="shapes">Star with 6 edges</option>
+              <option value="star8" class="shapes">Star with 8 edges</option>
+              <option value="tree" class="shapes">Tree</option>
+              <option value="triangle" class="shapes">Triangle</option>
+            </select>
+          </div>
+        </div>
+          <!-- 8 levels -->
+          <div class="input-level">
+            <label>Level<br>
+              <input type="range" min="1" max = "8" value='1' class="level-bar" id="game-level" name="level-bar" placeholder="e.g. level 1">
+            </label>
+            <span id="level-value">1</span>
+          </div>
+          <!-- <button type="button" class="button-create" id="create" onclick="toggleDropdownCreate()">Create</button> -->
+          <p style="position: relative; top:-170px">Choose your mode</p>
+          <div class="ans-no-ans">
+            <label for="ans">
+              <input type="radio" id="ans" name='create-options' value="answer" required>
+              Answer
+            </label>
+            <label for="no-ans">
+              <input type="radio" id="no-ans" name='create-options'value="no-answer" required>
+              No Answer
+            </label>
+          </div>
+          <input type="submit" class="button" id="create" value='Create'/>
+      </form>
+    </div>
+    <div class="image-display">
+      {% if image %}
+        <img class="img" src="{{media_url}}{{image}}" alt="logo">
+      {% else %}
+        <img class="img" src="{% static '/imageWS.jpg' %}" alt="logo">
+      {% endif %}
+      {% if pdf_filename %}
+        <form method="get" action="{% url 'download' pdf_filename %}">
+            <button class="download-button" type='submit'>Download PDF</button>
+        </form>
+      {% else %}
+            <!-- <button class="download-button" type='submit'>Download PDF</button> -->
+      {% endif %}
+      </form>
+    </div>
+  </div>
+  
+</body>
+
+<script>
+  const
+    range = document.getElementById('game-level'),
+    rangeV = document.getElementById('level-value'),
+    setValue = ()=>{
+      const
+        newValue = Number( (range.value - range.min) * 100 / (range.max - range.min) ), // cal new value
+        // cal new position
+        u_1 = 15.5;
+        d = -4;
+        newPosition = u_1 + (range.value-1)*d
+      rangeV.innerHTML = `<span>${range.value}</span>`; // set current level
+      rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`; // set new position
+      // console.log(range.value);
+    };
+  document.addEventListener("DOMContentLoaded", setValue);
+  range.addEventListener('input', setValue);
+
+
+  function toggleDropdownCreate() {
+    var dropdownMenuCreate = document.getElementById("dropdownMenuCreate");
+    dropdownMenuCreate.classList.toggle("show2");
+  }
+  
+  // Đóng dropdown menu nếu click ra ngoài
+  window.onclick = function(event) {
+    if (!event.target.matches('.button-avatar')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content-button");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show1')) {
+          openDropdown.classList.remove('show1');
+        }
+      }
+    }
+    if (!event.target.matches('.button-create')) {
+      var dropdownsCreate = document.getElementsByClassName("dropdown-content-button-create");
+      var j;
+      for (j = 0; j < dropdownsCreate.length; j++) {
+        var openDropdownCreate = dropdownsCreate[j];
+        if (openDropdownCreate.classList.contains('show2')) {
+          openDropdownCreate.classList.remove('show2');
+        }
+      }
+    }
+  }
+</script>
+  
+  
+  

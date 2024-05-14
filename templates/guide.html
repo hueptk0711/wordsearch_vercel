@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static '/favicon.ico' %}">
+    <link rel="stylesheet" type='text/css' href="{%static '/guide.css' %}?version=1"> 
+</head>
+
+<body>
+    <div class="head">
+        <div class="dropdown">
+            <button class="dropbtn">&#9776;</button>
+            <div class="dropdown-content">
+                <a href="home">Home</a>
+                <a href="guide">Introduction</a>
+                <a href="about_us">About us</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <main>
+        <div class="header">
+            <h2 class="guide-title">Introduction</h2>
+            <hr class="line">
+            <div class="content"></div>
+        </div>
+        <div class="contents">
+            <div class="content1">
+                <div class="square"></div>
+                <p class="p-title">Interactive Learning with AI</p>
+                <p class="text">Discover the power of AI in education with our Word Search game. Utilizing advanced AI algorithms, this tool offers a unique, interactive way to engage students in the classroom, making learning both fun and effective.</p>
+            </div>
+            <div class="content2">
+                <div class="square"></div>
+                <p class="p-title">Tailored Educational Content</p>
+                <p class="text">Easily integrate your lesson plans into our Word Search game. The AI-driven content adaptation ensures each game is perfectly aligned with your educational objectives, providing a personalized learning experience for each student.</p>
+            </div>
+            <div class="content3">
+                <div class="square"></div>
+                <p class="p-title">Features and Benefits</p>
+                <p class="text">AI-enhanced word search puzzles for engaging classroom activities
+                    Customizable to fit any K-12 lesson plan
+                    Improves vocabulary and spelling in an interactive format
+                    Supports a variety of learning styles with adaptive AI technology
+                    Easy-to-use interface, designed specifically for educators</p>
+            </div>
+            <div class="content4">
+                <div class="square"></div>
+                <p class="p-title">How It Works</p>
+                <p class="text">Select your lesson's key concepts and objectives.
+                    Let the AI generate a tailored word search puzzle.
+                    Integrate the game into your teaching session for enhanced engagement.</p>
+            </div>
+            <div class="content5">
+                <div class="square"></div>
+                <p class="p-title">Join the Future of Education</p>
+                <p class="text">Be part of the innovative wave of AI in education with Almanack's Word Search game. Enhance your teaching methods, engage your students more effectively, and witness the transformation in your classroom.</p>
+            </div>
+        </div>
+    </main>
+</body>
